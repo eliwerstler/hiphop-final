@@ -1,0 +1,282 @@
+/* ================================================================
+   NOAH BERNSTEIN — Production / Def Jam / Rick Rubin
+   Recording studio / DAW. Dark, technical, layered.
+   Phosphor green on near-black. Horizontal track lanes.
+   ================================================================ */
+
+:root {
+  --accent:      #6DC44A;
+  --accent-glow: rgba(109,196,74,0.08);
+  --lane-bg:     #0A0A09;
+  --lane-head:   #0F0F0E;
+}
+
+/* ── Chapter header ───────────────────────────────────────── */
+
+.chapter-header {
+  padding: 96px 56px 72px;
+  border-bottom: 1px solid var(--border);
+  background: #090908;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Horizontal scanlines */
+.chapter-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 3px,
+    rgba(109,196,74,0.012) 3px, rgba(109,196,74,0.012) 4px
+  );
+  pointer-events: none;
+}
+
+/* Phosphor glow */
+.chapter-header::after {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, rgba(109,196,74,0.05) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.chapter-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.65em;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: 0.75;
+  margin-bottom: 22px;
+}
+
+.chapter-title {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(3rem, 8.5vw, 7.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin-bottom: 20px;
+  max-width: 860px;
+  position: relative;
+}
+
+.chapter-author {
+  font-family: var(--mono);
+  font-size: 0.68em;
+  color: var(--text-3);
+  letter-spacing: 0.09em;
+}
+
+/* ── Intro ────────────────────────────────────────────────── */
+
+.chapter-intro {
+  padding: 64px 56px 52px;
+  max-width: 740px;
+  border-bottom: 1px solid var(--border);
+  background: #0A0A09;
+}
+
+.chapter-intro .intro-text {
+  font-size: 0.94em;
+  line-height: 1.8;
+  color: var(--text-2);
+}
+
+/* ── DAW transport bar ────────────────────────────────────── */
+
+.daw-transport {
+  background: #0D0D0C;
+  border-bottom: 1px solid var(--border);
+  padding: 13px 56px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.transport-label {
+  font-family: var(--mono);
+  font-size: 0.62em;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-4);
+}
+
+.transport-marker {
+  font-family: var(--mono);
+  font-size: 0.66em;
+  color: var(--accent);
+  opacity: 0.65;
+}
+
+.transport-divider { flex: 1; height: 1px; background: var(--border); }
+
+/* ── Track lanes ──────────────────────────────────────────── */
+
+.daw-section { padding: 0; }
+
+.lane {
+  display: grid;
+  grid-template-columns: 188px 1fr;
+  min-height: 200px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+/* Faint horizontal line across the lane */
+.lane::before {
+  content: '';
+  position: absolute;
+  left: 188px;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(to right, rgba(109,196,74,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Lane header — like a mixer channel strip */
+.lane-header {
+  background: var(--lane-head);
+  border-right: 1px solid var(--border);
+  padding: 22px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.lane-label {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.lane-sublabel {
+  font-family: var(--mono);
+  font-size: 0.6em;
+  color: var(--text-3);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.lane-indicator {
+  display: flex;
+  gap: 5px;
+  margin-top: auto;
+  padding-top: 16px;
+}
+
+.lane-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.28;
+}
+.lane-dot.on { opacity: 0.9; }
+
+/* Lane content — scrollable horizontal strip */
+.lane-content {
+  background: var(--lane-bg);
+  padding: 18px 22px;
+  display: flex;
+  gap: 14px;
+  align-items: stretch;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+/* Artifact cards within lanes */
+.lane-artifact {
+  background: #111110;
+  border: 1px solid rgba(255,255,255,0.055);
+  min-width: 265px;
+  max-width: 315px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.lane-artifact:hover { border-color: rgba(109,196,74,0.28); }
+
+.lane-artifact .artifact-meta {
+  padding: 8px 12px 7px;
+  border-bottom: 1px solid rgba(255,255,255,0.045);
+  background: #131312;
+}
+
+.lane-artifact .artifact-title {
+  font-family: var(--mono);
+  font-size: 0.69em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.lane-artifact .artifact-sub { display: flex; gap: 10px; }
+
+.lane-artifact .artifact-type,
+.lane-artifact .artifact-date {
+  font-family: var(--mono);
+  font-size: 0.62em;
+  color: var(--text-3);
+}
+
+.lane-artifact .artifact-media { flex: 1; }
+
+.lane-artifact .artifact-video .media-placeholder,
+.lane-artifact .artifact-image .media-placeholder {
+  font-size: 0.63em;
+  padding: 14px;
+}
+
+.lane-artifact .artifact-video .media-placeholder { aspect-ratio: 16/9; }
+.lane-artifact .artifact-image .media-placeholder { aspect-ratio: 4/3; }
+
+.lane-artifact .artifact-annotation {
+  padding: 8px 12px;
+  font-size: 0.76em;
+  color: var(--text-2);
+  line-height: 1.65;
+  border-top: 1px solid rgba(255,255,255,0.045);
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .chapter-header, .chapter-intro, .daw-transport { padding-left: 28px; padding-right: 28px; }
+  .lane { grid-template-columns: 1fr; }
+  .lane-header {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    flex-direction: row;
+    align-items: center;
+    padding: 18px 28px;
+    gap: 14px;
+  }
+  .lane-indicator { margin-top: 0; margin-left: auto; padding-top: 0; }
+  .lane-content { padding: 16px 28px; }
+  .lane::before { left: 0; }
+}
+
+@media (max-width: 600px) {
+  .chapter-header { padding-top: 60px; padding-bottom: 48px; }
+  .lane-artifact { min-width: 220px; }
+}

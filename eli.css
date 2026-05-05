@@ -1,0 +1,247 @@
+/* ================================================================
+   ELI WERSTLER — From the Block to the Brand
+   The page commercializes as you scroll.
+   Era 1: compressed, rough, underground.
+   Era 2: kinetic, hustle energy.
+   Era 3: sleek, spacious, corporate.
+   ================================================================ */
+
+.chapter-header {
+  padding: 100px 56px 72px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+/* Scan-line texture on header */
+.chapter-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 2px,
+    rgba(255,255,255,0.011) 2px, rgba(255,255,255,0.011) 4px
+  );
+  pointer-events: none;
+}
+
+.chapter-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.65em;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.chapter-eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.chapter-title {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(3rem, 8vw, 7rem);
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin-bottom: 20px;
+  max-width: 860px;
+}
+
+.chapter-author {
+  font-family: var(--mono);
+  font-size: 0.68em;
+  color: var(--text-3);
+  letter-spacing: 0.1em;
+}
+
+/* ── Era sections ─────────────────────────────────────────── */
+
+.era {
+  padding: 80px 56px;
+  position: relative;
+  transition: background 0.4s;
+}
+
+.era + .era { border-top: 1px solid var(--border); }
+
+.era-label {
+  font-family: var(--mono);
+  font-size: 0.64em;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.era-num { opacity: 0.38; }
+
+.era-heading {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(3rem, 7.5vw, 6.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+
+.era-decade {
+  font-family: var(--mono);
+  font-size: 0.64em;
+  letter-spacing: 0.1em;
+  color: var(--text-3);
+  margin-bottom: 44px;
+}
+
+.era-intro {
+  margin-bottom: 52px;
+  max-width: 660px;
+}
+
+.era-artifacts { display: grid; gap: 18px; }
+
+/* ================================================================
+   ERA 1 — COMMUNITY (1990s)
+   Raw, tight, underground. Slight rotation, compressed feel.
+   ================================================================ */
+
+.era-community {
+  background: var(--bg);
+}
+
+/* Diagonal grain texture */
+.era-community::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -38deg, transparent, transparent 10px,
+    rgba(255,255,255,0.006) 10px, rgba(255,255,255,0.006) 11px
+  );
+  pointer-events: none;
+}
+
+.era-community .era-label  { color: var(--text-3); }
+.era-community .era-heading {
+  letter-spacing: -0.03em;
+  color: var(--text);
+}
+
+.era-community .era-artifacts {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.era-community .artifact-slot { background: #0C0C0A; }
+
+/* Slightly off-kilter — the street has no straight lines */
+.era-community .artifact-slot:nth-child(2n)   { transform: rotate(-0.25deg); }
+.era-community .artifact-slot:nth-child(2n+1) { transform: rotate( 0.15deg); }
+
+/* ================================================================
+   ERA 2 — HUSTLE (2000s)
+   Energy, ambition. Accent color starts asserting.
+   ================================================================ */
+
+.era-hustle { background: #0B0A08; }
+
+.era-hustle .era-label  { color: var(--accent); }
+.era-hustle .era-heading {
+  color: var(--text);
+}
+.era-hustle .era-heading em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.era-hustle .era-artifacts {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.era-hustle .artifact-slot {
+  background: #0F0D0A;
+  border-color: rgba(217,79,46,0.1);
+}
+
+/* ================================================================
+   ERA 3 — MOGUL (2010s–2020s)
+   Clean. Corporate. Spacious. The page has been acquired.
+   ================================================================ */
+
+.era-mogul {
+  background: #0A0A0A;
+  border-top-color: rgba(255,255,255,0.04) !important;
+}
+
+.era-mogul .era-label {
+  color: var(--text-2);
+  letter-spacing: 0.28em;
+}
+
+.era-mogul .era-heading {
+  font-size: clamp(3rem, 9vw, 8rem);
+  letter-spacing: 0.02em;
+  color: var(--text);
+}
+
+.era-mogul .era-artifacts {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+}
+
+.era-mogul .artifact-slot {
+  border-color: rgba(255,255,255,0.042);
+  background: #0D0D0D;
+  border-radius: 0;
+}
+
+.era-mogul .artifact-title { letter-spacing: 0.14em; }
+
+/* Smooth background gradient across the whole eras container */
+.eras-container {
+  background: linear-gradient(to bottom, var(--bg) 0%, #0B0A08 50%, #0A0A0A 100%);
+}
+
+/* ── External source links ────────────────────────────────── */
+
+.artifact-ext {
+  display: inline-block;
+  margin-top: 9px;
+  font-family: var(--mono);
+  font-size: 0.6em;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  opacity: 0.65;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: opacity 0.2s, border-color 0.2s;
+}
+.artifact-ext:hover { opacity: 1; border-bottom-color: var(--accent); }
+.artifact-ext + .artifact-ext { margin-left: 16px; }
+
+/* ── Responsive ───────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .chapter-header, .era { padding-left: 28px; padding-right: 28px; }
+  .era-community .era-artifacts { grid-template-columns: repeat(2, 1fr); }
+  .era-mogul .era-artifacts { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .chapter-header { padding-top: 60px; padding-bottom: 48px; }
+  .era { padding-top: 56px; padding-bottom: 56px; }
+  .era-community .era-artifacts,
+  .era-hustle .era-artifacts { grid-template-columns: 1fr; }
+  .era-community .artifact-slot:nth-child(n) { transform: none; }
+}
