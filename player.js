@@ -25,8 +25,8 @@ const _parser = new DOMParser();
 function _swapPage(doc) {
   document.title = doc.title;
 
-  document.head.querySelectorAll('link[rel="stylesheet"]:not([href="style.css"]), style').forEach(el => el.remove());
-  doc.head.querySelectorAll('link[rel="stylesheet"]:not([href="style.css"]), style').forEach(el => {
+  document.head.querySelectorAll('link[rel="stylesheet"]:not([href^="style.css"]), style').forEach(el => el.remove());
+  doc.head.querySelectorAll('link[rel="stylesheet"]:not([href^="style.css"]), style').forEach(el => {
     document.head.appendChild(el.cloneNode(true));
   });
 
